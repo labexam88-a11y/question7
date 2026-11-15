@@ -1,0 +1,23 @@
+name: Docker Build
+
+ on:
+   push:
+       branches:
+               - main
+
+
+jobs:
+   docker_build:
+      runs-on: ubuntu-latest
+
+   steps:
+      - name: Checkout Repository
+       uses: actions/checkout@v4
+
+
+      - name: Setup Docker Buildx
+       uses: docker/setup-buildx-action@v3
+
+      - name: Docker image
+        run: docker build -t  docker_ci:v1 .
+
